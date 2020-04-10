@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
@@ -16,75 +15,14 @@
 
     <!-- Leaflet CSS Library -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-
-    <!-- Style untuk tampilan peta fullscreen -->
-    <style>
-      html, body, #map {
-        height: 100%;
-        width: 100%;
-        margin: 0px;
-      }
-      .coordinates-info {
-        padding: 6px 8px;
-        background: white;
-        background: rgba(255,255,255,0.9);
-        border-radius: 4px;
-        border: 2px solid rgba(0,0,0,0.2);
-        background-clip: padding-box;
-        font: 14px 'Lucida Console', Monaco, monospace;
-      }
-      #coordinates {
-        color: red;
-      }
-      
-    </style>
+    <link rel="stylesheet" href="assets/css/app.css">
   </head>
 
   <body>
-    <!-- Leaflet JavaScript Library -->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
     <div id="map"></div>
 
-    <script>
-      /* Initial Map */
-      var mapcenter = [-2.61119,118.65234];
-      var map = L.map('map').setView(mapcenter,5);
-      
-      /* Tile Basemap */
-      var basemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://unsorry.net" target="_blank">unsorry@2020</a>'
-      });
-      basemap.addTo(map);      
-
-      /* Map Center Coordinate */
-      var coordinatesdiv = new L.Control();
-      coordinatesdiv.onAdd = function (map) {
-        this._div = L.DomUtil.create('div', 'coordinates-info');
-        this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">Move the map</div>';
-        return this._div;
-      };
-      coordinatesdiv.addTo(map);
-
-      var customIcon = L.icon({
-        iconUrl: 'centericon.svg',
-        iconSize: [60, 60],
-        iconAnchor: [30, 30]
-      });
-      marker = L.marker(mapcenter, {icon: customIcon, interactive: false});
-      marker.addTo(map);
-
-      map.addEventListener('move', mapMovement);
-
-      function mapMovement (e) {
-        var mapcenter = map.getCenter();
-        document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(7) + "<br>Long: " + mapcenter.lng.toFixed(7) + "<br>Zoom: " + map.getZoom();
-
-        marker.remove();
-
-        marker = L.marker([mapcenter.lat.toFixed(7), mapcenter.lng.toFixed(7)], {icon: customIcon, interactive: false});
-        marker.addTo(map);
-      }
-    </script>
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="assets/js/app.js"></script>
   </body>
 </html>
