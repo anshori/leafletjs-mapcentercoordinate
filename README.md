@@ -1,5 +1,8 @@
 # leafletjs-mapcentercoordinate
-Guide for determining the center point of the map and zoom value in creating a web map
+
+This repository contains how to display the map center coordinates and zoom values using Leaflet JS.
+
+This can be used as a guide to determine the center coordinates of the map and the zoom value in making the next web map.
 
 ![preview](preview.png)
 
@@ -9,7 +12,4 @@ Demo: [https://www.unsorry.net/git/leafletjs-mapcentercoordinate](https://www.un
 
 ---
 
-##### Leaflet plugins in used:
-- [Map center coordinate](https://github.com/xguaita/Leaflet.MapCenterCoord)
-- [Zoom Display](https://github.com/azavea/Leaflet.zoomdisplay)
-- [OSM Geocoder](https://github.com/k4r573n/leaflet-control-osm-geocoder)
+> unsorry@2020
