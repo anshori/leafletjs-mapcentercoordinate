@@ -12,15 +12,15 @@ basemap.addTo(map);
 var coordinatesdiv = new L.Control();
 coordinatesdiv.onAdd = function (map) {
   this._div = L.DomUtil.create('div', 'coordinates-info');
-  this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">Move the map</div>';
+  this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">Move the map</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
   return this._div;
 };
 coordinatesdiv.addTo(map);
 
 var customIcon = L.icon({
   iconUrl: 'centericon.svg',
-  iconSize: [60, 60],
-  iconAnchor: [30, 30]
+  iconSize: [70, 70],
+  iconAnchor: [35, 35]
 });
 marker = L.marker(mapcenter, {icon: customIcon, interactive: false});
 marker.addTo(map);
@@ -29,7 +29,8 @@ map.addEventListener('move', mapMovement);
 
 function mapMovement (e) {
   var mapcenter = map.getCenter();
-  document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(7) + "<br>Long: " + mapcenter.lng.toFixed(7) + "<br>Zoom: " + map.getZoom() + "<hr>Bounding Box:<br>" + map.getBounds().getWest().toFixed(3) + ", " + map.getBounds().getSouth().toFixed(3) + ", " + map.getBounds().getEast().toFixed(3) + ", " + map.getBounds().getNorth().toFixed(3);
+  document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(7) + "<br>Long: " + mapcenter.lng.toFixed(7) + "<br>Zoom: " + map.getZoom();
+  document.getElementById("bbox").innerHTML = "Left &nbsp;: " + map.getBounds().getWest().toFixed(5) + "<br>Bottom: " + map.getBounds().getSouth().toFixed(5) + "<br>Right : " + map.getBounds().getEast().toFixed(5) + "<br>Top &nbsp;&nbsp;: " + map.getBounds().getNorth().toFixed(5);
 
   marker.remove();
 

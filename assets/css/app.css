@@ -4,14 +4,16 @@ html, body, #map {
   margin: 0px;
 }
 .coordinates-info {
-  padding: 6px 8px;
+  padding: 8px 8px;
   background: white;
   background: rgba(255,255,255,0.9);
   border-radius: 4px;
   border: 2px solid rgba(0,0,0,0.2);
   background-clip: padding-box;
   font: 14px 'Lucida Console', Monaco, monospace;
+  font-weight: bold;
 }
-#coordinates {
+#coordinates, #bbox {
   color: red;
+  font-weight: normal;
 }
