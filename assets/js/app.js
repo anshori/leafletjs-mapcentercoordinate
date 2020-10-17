@@ -2,6 +2,8 @@
 var mapcenter = [-2.61119,118.65234];
 var map = L.map('map').setView(mapcenter,5);
 
+var hash = new L.Hash(map);
+
 /* Tile Basemap */
 var basemap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://unsorry.net" target="_blank">unsorry@2020</a>'
