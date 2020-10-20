@@ -2,6 +2,13 @@
 var mapcenter = [-2.61119,118.65234];
 var map = L.map('map').setView(mapcenter,5);
 
+/* Geocoder */
+L.Control.geocoder({
+  geocoder: L.Control.Geocoder.nominatim(),
+  position: 'topleft',
+}).addTo(map);
+
+/* Display zoom, latitude, longitude in URL */
 var hash = new L.Hash(map);
 
 /* Tile Basemap */
@@ -31,11 +38,14 @@ map.addEventListener('move', mapMovement);
 
 function mapMovement (e) {
   var mapcenter = map.getCenter();
-  document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(7) + "<br>Long: " + mapcenter.lng.toFixed(7) + "<br>Zoom: " + map.getZoom();
-  document.getElementById("bbox").innerHTML = "Left &nbsp;: " + map.getBounds().getWest().toFixed(5) + "<br>Bottom: " + map.getBounds().getSouth().toFixed(5) + "<br>Right : " + map.getBounds().getEast().toFixed(5) + "<br>Top &nbsp;&nbsp;: " + map.getBounds().getNorth().toFixed(5);
+  var precisionLatLng = 7;
+  var precisionBbox = 5;
+
+  document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(precisionLatLng) + "<br>Long: " + mapcenter.lng.toFixed(precisionLatLng) + "<br>Zoom: " + map.getZoom();
+  document.getElementById("bbox").innerHTML = "Left &nbsp;: " + map.getBounds().getWest().toFixed(precisionBbox) + "<br>Bottom: " + map.getBounds().getSouth().toFixed(precisionBbox) + "<br>Right : " + map.getBounds().getEast().toFixed(precisionBbox) + "<br>Top &nbsp;&nbsp;: " + map.getBounds().getNorth().toFixed(precisionBbox);
 
   marker.remove();
 
-  marker = L.marker([mapcenter.lat.toFixed(7), mapcenter.lng.toFixed(7)], {icon: customIcon, interactive: false});
+  marker = L.marker([mapcenter.lat.toFixed(precisionLatLng), mapcenter.lng.toFixed(precisionLatLng)], {icon: customIcon, interactive: false});
   marker.addTo(map);
 }
