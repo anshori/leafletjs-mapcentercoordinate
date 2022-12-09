@@ -13,7 +13,10 @@ html, body, #map {
   font: 14px 'Lucida Console', Monaco, monospace;
   font-weight: bold;
 }
-#coordinates, #bbox {
+#coordinates, #zoom, #bbox {
   color: red;
   font-weight: normal;
+}
+#copy {
+  width: 100%;
 }

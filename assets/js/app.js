@@ -21,7 +21,7 @@ basemap.addTo(map);
 var coordinatesdiv = new L.Control();
 coordinatesdiv.onAdd = function (map) {
   this._div = L.DomUtil.create('div', 'coordinates-info');
-  this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">Move the map</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
+  this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">-2.61119,118.65234</div><button id="copy" onclick="CopyToClipboard()">Copy Coordinates</button><br><br><div id="zoom">Zoom: 5</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
   return this._div;
 };
 coordinatesdiv.addTo(map);
@@ -41,11 +41,23 @@ function mapMovement (e) {
   var precisionLatLng = 7;
   var precisionBbox = 5;
 
-  document.getElementById("coordinates").innerHTML = "Lat : " + mapcenter.lat.toFixed(precisionLatLng) + "<br>Long: " + mapcenter.lng.toFixed(precisionLatLng) + "<br>Zoom: " + map.getZoom();
+  document.getElementById("coordinates").innerHTML = mapcenter.lat.toFixed(precisionLatLng) + "," + mapcenter.lng.toFixed(precisionLatLng);
+  document.getElementById("zoom").innerHTML =  "Zoom: " + map.getZoom();
   document.getElementById("bbox").innerHTML = "Left &nbsp;: " + map.getBounds().getWest().toFixed(precisionBbox) + "<br>Bottom: " + map.getBounds().getSouth().toFixed(precisionBbox) + "<br>Right : " + map.getBounds().getEast().toFixed(precisionBbox) + "<br>Top &nbsp;&nbsp;: " + map.getBounds().getNorth().toFixed(precisionBbox);
 
   marker.remove();
 
   marker = L.marker([mapcenter.lat.toFixed(precisionLatLng), mapcenter.lng.toFixed(precisionLatLng)], {icon: customIcon, interactive: false});
   marker.addTo(map);
+}
+
+function CopyToClipboard() {
+  var text = document.getElementById("coordinates");
+  var r = document.createRange();
+  r.selectNode(text);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(r);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
+  alert("Coordinates copied to clipboard");
 }
