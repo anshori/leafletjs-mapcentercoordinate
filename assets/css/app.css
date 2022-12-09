@@ -19,4 +19,17 @@ html, body, #map {
 }
 #copy {
   width: 100%;
+  border: 1px solid rgb(54, 54, 54);
+	background-color: #5dca88;
+	padding: 5px;
+	cursor: pointer;
+	box-shadow: 0 3px #1a7940;
+	border-radius: 5px;
+}
+
+#copy:active {
+	position: relative;
+	top: 3px;
+	box-shadow: none;
+	color: #333;
 }

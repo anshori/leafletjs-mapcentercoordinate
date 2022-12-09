@@ -10,8 +10,6 @@ This can be used as a guide to determine the center coordinates of the map and t
 
 Demo: 
 
-[https://unsorry.net/git/leafletjs-mapcentercoordinate](https://unsorry.net/git/leafletjs-mapcentercoordinate)
-
 [https://anshori.github.io/leafletjs-mapcentercoordinate](https://anshori.github.io/leafletjs-mapcentercoordinate/)
 
 ---

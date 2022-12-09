@@ -21,7 +21,7 @@ basemap.addTo(map);
 var coordinatesdiv = new L.Control();
 coordinatesdiv.onAdd = function (map) {
   this._div = L.DomUtil.create('div', 'coordinates-info');
-  this._div.innerHTML = 'Center coordinates<hr><div id="coordinates">-2.61119,118.65234</div><button id="copy" onclick="CopyToClipboard()">Copy Coordinates</button><br><br><div id="zoom">Zoom: 5</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
+  this._div.innerHTML = 'Center Coordinates<hr><div id="coordinates">-2.61119,118.65234</div><button id="copy" onclick="CopyToClipboard()">Copy Coordinates</button><br><br><div id="zoom">Zoom: 5</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
   return this._div;
 };
 coordinatesdiv.addTo(map);
@@ -59,5 +59,10 @@ function CopyToClipboard() {
   window.getSelection().addRange(r);
   document.execCommand('copy');
   window.getSelection().removeAllRanges();
-  alert("Coordinates copied to clipboard");
+  Swal.fire({
+		icon: 'success',
+		title: 'Coordinates copied to clipboard',
+		showConfirmButton: false,
+		timer: 1000,
+	})
 }
