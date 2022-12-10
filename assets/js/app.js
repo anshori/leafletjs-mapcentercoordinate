@@ -60,9 +60,10 @@ function CopyToClipboard() {
   document.execCommand('copy');
   window.getSelection().removeAllRanges();
   Swal.fire({
-		icon: 'success',
-		title: 'Coordinates copied to clipboard',
+    icon: 'success',
+		text: 'Coordinates copied to clipboard',
 		showConfirmButton: false,
-		timer: 1000,
+    timer: 1000,
+    backdrop: false,
 	})
 }
