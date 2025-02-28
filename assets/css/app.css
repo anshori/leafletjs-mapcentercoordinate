@@ -33,3 +33,9 @@ html, body, #map {
 	box-shadow: none;
 	color: #333;
 }
+
+#bbox-copy 
+{
+	font-size: 4px;
+	color: white;
+}

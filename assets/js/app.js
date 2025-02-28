@@ -21,7 +21,7 @@ basemap.addTo(map);
 var coordinatesdiv = new L.Control();
 coordinatesdiv.onAdd = function (map) {
   this._div = L.DomUtil.create('div', 'coordinates-info');
-  this._div.innerHTML = 'Center Coordinates<hr><div id="coordinates">-2.61119,118.65234</div><button id="copy" onclick="CopyToClipboard()">Copy Coordinates</button><br><br><div id="zoom">Zoom: 5</div><hr>Bounding Box<hr><div id="bbox">Move the map</div>';
+  this._div.innerHTML = 'Center Coordinates<hr><div id="coordinates">-2.61119,118.65234</div><button id="copy" onclick="CopyToClipboard()">Copy Coordinates</button><br><br><div id="zoom">Zoom: 5</div><hr>Bounding Box<hr><div id="bbox">Move the map</div><div id="bbox-copy"></div><button id="copy" onclick="CopyToClipboardBbox()">Copy Bounding Box</button>';
   return this._div;
 };
 coordinatesdiv.addTo(map);
@@ -44,6 +44,7 @@ function mapMovement (e) {
   document.getElementById("coordinates").innerHTML = mapcenter.lat.toFixed(precisionLatLng) + "," + mapcenter.lng.toFixed(precisionLatLng);
   document.getElementById("zoom").innerHTML =  "Zoom: " + map.getZoom();
   document.getElementById("bbox").innerHTML = "Left &nbsp;: " + map.getBounds().getWest().toFixed(precisionBbox) + "<br>Bottom: " + map.getBounds().getSouth().toFixed(precisionBbox) + "<br>Right : " + map.getBounds().getEast().toFixed(precisionBbox) + "<br>Top &nbsp;&nbsp;: " + map.getBounds().getNorth().toFixed(precisionBbox);
+	document.getElementById("bbox-copy").innerHTML = map.getBounds().getWest().toFixed(precisionBbox) + "," + map.getBounds().getSouth().toFixed(precisionBbox) + "," + map.getBounds().getEast().toFixed(precisionBbox) + "," + map.getBounds().getNorth().toFixed(precisionBbox);
 
   marker.remove();
 
@@ -62,6 +63,23 @@ function CopyToClipboard() {
   Swal.fire({
     icon: 'success',
 		text: 'Coordinates copied to clipboard',
+		showConfirmButton: false,
+    timer: 1000,
+    backdrop: false,
+	})
+}
+
+function CopyToClipboardBbox() {
+  var text = document.getElementById("bbox-copy");
+  var r = document.createRange();
+  r.selectNode(text);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(r);
+  document.execCommand('copy');
+  window.getSelection().removeAllRanges();
+  Swal.fire({
+    icon: 'success',
+		text: 'Bounding box copied to clipboard',
 		showConfirmButton: false,
     timer: 1000,
     backdrop: false,
